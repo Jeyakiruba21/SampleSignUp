@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample Login/Signup Form</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-functions.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-database.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1>Signup Form</h1>
+      <input type="email" placeholder="Email" id="email" />
+      <input type="password" placeholder="Password" id="password" />
+
+      <button id="signup">SignUp</button>
+    </div>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyA2nzSbHqfBdX8AOokdhEsRK6gp1F01Fcs",
+        authDomain: "webapp-b56ec.firebaseapp.com",
+        projectId: "webapp-b56ec",
+        storageBucket: "webapp-b56ec.appspot.com",
+        messagingSenderId: "222164688075",
+        appId: "1:222164688075:web:af36cad01a325bcba6cf4e",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      document.getElementById("signup").addEventListener("click", signupUser);
+
+      function signupUser() {
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          console.log(user);
+        } else {
+        }
+      });
+    </script>
+  </body>
+</html>
